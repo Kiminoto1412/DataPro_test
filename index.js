@@ -1,0 +1,29 @@
+const baseURL = "http://localhost:3000/api/";
+
+const [formData, setFormData] = useState({
+  name: "",
+  surname: "",
+  age: "",
+});
+
+const createEmployee = async () => {
+  try {
+    const { name, surname, age } = formData;
+    // Validate input
+    if (!name || !surname || !age) {
+      closeModal();
+      Swal.fire("Error", "Please fill in all fields", "error");
+      return;
+    }
+
+    await axios.post(`${baseURL}/api`, {
+      name: formData.name,
+      surname: formData.surname,
+      age: formData.age,
+    });
+
+    Swal.fire("Success", "Data submitted successfully", "success");
+  } catch (err) {
+    Swal.fire("Error", `${err.response.data.message}`, "error");
+  }
+};
