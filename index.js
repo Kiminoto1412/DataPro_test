@@ -15,6 +15,10 @@ const createEmployee = async () => {
       Swal.fire("Error", "Please fill in all fields", "error");
       return;
     }
+    if (age <= 0) {
+      Swal.fire("Error", "age must be more than 0", "error");
+      return;
+    }
 
     await axios.post(`${baseURL}/employee`, {
       name: formData.name,
