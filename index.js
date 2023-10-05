@@ -16,7 +16,7 @@ const createEmployee = async () => {
       return;
     }
 
-    await axios.post(`${baseURL}/api`, {
+    await axios.post(`${baseURL}/employee`, {
       name: formData.name,
       surname: formData.surname,
       age: formData.age,
